@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praticando Eventos</title>
+    <style>
+        body{
+            background-color: #252627;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+        }
+        h1{
+            color: white;
+        }
+
+        div#res{
+            margin-top: 20px;
+            text-align: center;
+        }
+        div#area{
+            background-color: #904E55;
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px; /*Para deixar o texto no centro*/
+            box-shadow: 1px 1px 5px black;
+            border-radius: 5px;
+            font-size: larger;
+            text-align: center;
+        }
+        div#resvel{
+            margin-top: 20px;
+        }
+        div#resdia{
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+        h1 sup{
+            font-size: small;
+        }
+        div#reseduc{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculadora">
+        <h1>Testando cálculo de soma</h1>
+            <input type="number" name="numero1" id="numero1">+
+            <input type="number" name="numero2" id="numero2">
+            <input type="button" value="Resultado" onclick="calcular()">
+        <div id="res"></div>
+        <script>
+            function calcular(){
+                var n1 = window.document.getElementById("numero1")
+                var n2 = window.document.getElementById("numero2")
+                var res = window.document.getElementById("res")
+                var n1 = Number(n1.value)
+                var n2 = Number(n2.value)
+                var s = n1+n2
+                res.innerHTML = `A soma entre ${n1} e ${n2} é de <strong>${s}</strong>`
+            }
+        </script>
+    </div>
+    <hr>
+        <div id="evento">
+            <h1>Testando Evento</h1>
+            <div id="area">Teste Aqui =D</div>
+            <script>
+                var area = window.document.getElementById('area')
+                area.addEventListener('mouseenter', entrar);
+                area.addEventListener('click', clicar);
+                area.addEventListener('mouseout', sair);
+                function entrar(){
+                    area.innerHTML= 'Entrou!'
+                }
+                function clicar(){
+                    area.innerHTML = 'Clicou!'
+                    area.style.background= '#BFB48F'
+                    area.style.color= 'black'
+                }
+                function sair(){
+                    area.innerHTML = 'Saiu'
+                    area.style.background= '#904E55'
+                    area.style.color= 'white'
+                }
+            </script>
+        </div>
+    <hr>
+    <div id="simulador">
+        <h1>Simulador de Multas <sup>Velocidade máxima: 60Km/h</sup></h1>
+        Sua velocidade:
+        <input type="number" name="txtvelocidade" id="txtvelocidade">
+        <input type="button" value="Resultado" onclick="calcularvel()">
+        <div id="resvel"></div>
+        <script>
+            function calcularvel(){
+                var txtvel = window.document.getElementById('txtvelocidade')
+                var vel = Number(txtvel.value)
+                var res = window.document.getElementById('resvel')
+                if(vel < 60 && vel > 50){
+                    res.innerHTML = `Você está á <strong>${vel}Km/h</strong>, dirija com cuidado!`
+                }else if(vel >60){
+                    res.innerHTML = `<strong>MULTADO!</strong> Você está á <strong>${vel}Km/h.</strong>`
+                }else{
+                    res.innerHTML = `Você está á <strong>${vel}Km/h</strong>, boa viagem!`
+                }
+            }
+        </script>
+    </div>
+    <hr>
+    <div id="dia">
+        <h2>Que dia é hoje?</h2>
+        <input type="button" value="Descobrir" onclick="verdia()">
+        <div id="resdia"></div>
+        <script>
+            function verdia(){
+                var agora = new Date()
+                var diasem = agora.getDay()
+                switch(diasem){
+                    case 0:
+                        resdia.innerHTML = 'Domingo'
+                        break
+                    case 1:
+                        resdia.innerHTML = 'Segunda'
+                        break
+                    case 2:
+                        resdia.innerHTML = 'Terça'
+                        break
+                    case 3:
+                        resdia.innerHTML = 'Quarta'
+                        break
+                    case 4:
+                        resdia.innerHTML = 'Quinta'
+                        break
+                    case 5:
+                        resdia.innerHTML = 'Sexta'
+                        break
+                    case 6:
+                        resdia.innerHTML = 'Sábado'
+                        break
+                }
+            }
+        </script>
+    </div>
+    <hr>
+    <div id="educado">
+        <h2>Que horas são?</h2>
+        <input type="button" value="Descobrir" onclick="resposta()">
+        <div id="reseduc"></div>
+        <script>
+                function resposta(){
+                    var reseduc = window.document.getElementById('reseduc')
+                    var agora = new Date()
+                    var hora = agora.getHours()
+                    reseduc.innerHTML = `Agora são <strong>${hora} horas</strong>.`
+                    if(hora<12){
+                        res.innerHTML += 'Bom dia!'
+                    }else if(hora<=18){
+                        res.innerHTML += 'Boa tarde!'
+                    }else{
+                        res.innerHTML += 'Bom dia!'
+                    }
+            }
+        </script>
+    </div>
+</body>
+</html>
