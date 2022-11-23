@@ -17,6 +17,13 @@ section{
     width: 500px;
     
 }
+img#imagem{
+    display: flex;
+    width: 100%;
+    max-width: 10em;
+    margin-top: -142px;
+    margin-left: 17em;
+}
 footer{
     font-style: italic;
     padding: 20px;
